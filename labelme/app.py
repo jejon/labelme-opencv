@@ -1448,7 +1448,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def brightnessContrast(self, value):
         dialog = BrightnessContrastDialog(
-            utils.img_data_to_pil(self.imageData),
+            utils.img_data_to_arr(self.imageData),
             self.onNewBrightnessContrast,
             parent=self,
         )
@@ -1573,7 +1573,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 )
         # set brightness contrast values
         dialog = BrightnessContrastDialog(
-            utils.img_data_to_pil(self.imageData),
+            utils.img_data_to_arr(self.imageData),
             self.onNewBrightnessContrast,
             parent=self,
         )
