@@ -5,7 +5,12 @@ import numpy as np
 
 
 def img_data_to_arr(img_data):
-    img = cv.imdecode(np.frombuffer(img_data, np.uint8), -1)
+    try:
+        img = cv.imdecode(np.frombuffer(img_data, np.uint16),
+                          cv.IMREAD_UNCHANGED)
+    except ValueError:
+        img = cv.imdecode(np.frombuffer(img_data, np.uint8),
+                          cv.IMREAD_UNCHANGED)
     return img
 
 

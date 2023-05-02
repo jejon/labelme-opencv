@@ -27,6 +27,7 @@ from labelme.shape import Shape
 from labelme.widgets import BrightnessContrastDialog
 from labelme.widgets import Canvas
 from labelme.widgets import FileDialogPreview
+from labelme.widgets import InsertFlagWidget
 from labelme.widgets import LabelDialog
 from labelme.widgets import LabelListWidget
 from labelme.widgets import LabelListWidgetItem
@@ -119,6 +120,20 @@ class MainWindow(QtWidgets.QMainWindow):
             self.loadFlags({k: False for k in config["flags"]})
         self.flag_dock.setWidget(self.flag_widget)
         self.flag_widget.itemChanged.connect(self.setDirty)
+        
+        self.insert_flag_dock = self.insert_flag_widget = None
+        self.insert_flag_dock = QtWidgets.QDockWidget(self.tr("Insert Flags"),
+                                                      self)
+        self.insert_flag_dock.setObjectName("Insert Flags")
+
+        def onInsertFlag(flagLabel):
+            item = QtWidgets.QListWidgetItem(flagLabel)
+            item.setFlags(item.flags() | Qt.ItemIsUserCheckable)
+            item.setCheckState(Qt.Checked)
+            self.flag_widget.addItem(item)
+
+        self.insert_flag_widget = InsertFlagWidget(onInsertFlag)
+        self.insert_flag_dock.setWidget(self.insert_flag_widget)
 
         self.labelList.itemSelectionChanged.connect(self.labelSelectionChanged)
         self.labelList.itemDoubleClicked.connect(self.editLabel)
@@ -193,7 +208,8 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setCentralWidget(scrollArea)
 
         features = QtWidgets.QDockWidget.DockWidgetFeatures()
-        for dock in ["flag_dock", "label_dock", "shape_dock", "file_dock"]:
+        for dock in ["flag_dock", "label_dock",
+                     "shape_dock", "file_dock"]:
             if self._config[dock]["closable"]:
                 features = features | QtWidgets.QDockWidget.DockWidgetClosable
             if self._config[dock]["floatable"]:
@@ -205,6 +221,7 @@ class MainWindow(QtWidgets.QMainWindow):
                 getattr(self, dock).setVisible(False)
 
         self.addDockWidget(Qt.RightDockWidgetArea, self.flag_dock)
+        self.addDockWidget(Qt.RightDockWidgetArea, self.insert_flag_dock)
         self.addDockWidget(Qt.RightDockWidgetArea, self.label_dock)
         self.addDockWidget(Qt.RightDockWidgetArea, self.shape_dock)
         self.addDockWidget(Qt.RightDockWidgetArea, self.file_dock)
@@ -696,6 +713,7 @@ class MainWindow(QtWidgets.QMainWindow):
             self.menus.view,
             (
                 self.flag_dock.toggleViewAction(),
+                self.insert_flag_dock.toggleViewAction(),
                 self.label_dock.toggleViewAction(),
                 self.shape_dock.toggleViewAction(),
                 self.file_dock.toggleViewAction(),
@@ -1594,7 +1612,7 @@ class MainWindow(QtWidgets.QMainWindow):
             dialog.slider_contrast.setValue(contrast)
         self.brightnessContrast_values[self.filename] = (brightness, contrast)
         if brightness is not None or contrast is not None:
-            dialog.onNewValue(None)
+            dialog.onNewValue()
         self.paintCanvas()
         self.addRecentFile(self.filename)
         self.toggleActions(True)
