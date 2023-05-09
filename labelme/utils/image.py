@@ -39,3 +39,10 @@ def img_data_to_png_data(img_data):
     arr_encode = np.array(img_encode)
     byte_encode = arr_encode.tobytes()
     return byte_encode
+
+
+def img_qt_to_arr(img_qt):
+    w, h, d = img_qt.size().width(), img_qt.size().height(), img_qt.depth()
+    bytes_ = img_qt.bits().asstring(w * h * d // 8)
+    img_arr = np.frombuffer(bytes_, dtype=np.uint8).reshape((h, w, d // 8))
+    return img_arr

@@ -5,7 +5,6 @@ import gdown
 import imgviz
 import numpy as np
 import onnxruntime
-import PIL.Image
 import skimage.measure
 
 from ...logger import logger
@@ -188,13 +187,4 @@ def _compute_polygon_from_points(
         tolerance=np.ptp(contour, axis=0).max() / 100,
     )
     polygon = polygon[:-1]  # drop last point that is duplicate of first point
-    if 0:
-        image_pil = PIL.Image.fromarray(image)
-        imgviz.draw.line_(image_pil, yx=polygon, fill=(0, 255, 0))
-        for point in polygon:
-            imgviz.draw.circle_(
-                image_pil, center=point, diameter=10, fill=(0, 255, 0)
-            )
-        imgviz.io.imsave("contour.jpg", np.asarray(image_pil))
-
     return polygon[:, ::-1]  # yx -> xy
