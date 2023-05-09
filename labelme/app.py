@@ -1224,7 +1224,7 @@ class MainWindow(QtWidgets.QMainWindow):
             points = shape["points"]
             shape_type = shape["shape_type"]
             flags = shape["flags"]
-            description = shape["description"]
+            description = shape.get("description", "")
             group_id = shape["group_id"]
             other_data = shape["other_data"]
 
@@ -1367,6 +1367,7 @@ class MainWindow(QtWidgets.QMainWindow):
             text = items[0].data(Qt.UserRole)
         flags = {}
         group_id = None
+        description = ""
         if self._config["display_label_popup"] or not text:
             previous_text = self.labelDialog.edit.text()
             text, flags, group_id, description = self.labelDialog.popUp(text)

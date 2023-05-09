@@ -65,6 +65,7 @@ def test_LabelDialog_popUp(qtbot):
     assert label == "person"
     assert flags == {}
     assert group_id is None
+    assert description == ""
 
     # popUp()
 
@@ -77,6 +78,7 @@ def test_LabelDialog_popUp(qtbot):
     assert label == "person"
     assert flags == {}
     assert group_id is None
+    assert description == ""
 
     # popUp() + key_Up
 
@@ -92,3 +94,4 @@ def test_LabelDialog_popUp(qtbot):
     assert label == "dog"
     assert flags == {}
     assert group_id is None
+    assert description == ""
