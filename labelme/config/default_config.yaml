@@ -7,7 +7,7 @@ keep_prev_brightness: false
 keep_prev_contrast: false
 logger_level: info
 
-flags: ["FCI A", "FCI B", "FCI C", "FCI D", "FCI E", "ill-positioned", "extended radiograph", 
+flags: ["FCI A1", "FCI A2", "FCI B1", "FCI B2", "FCI C", "FCI D", "FCI E", "FCI F", "ill-positioned", "extended radiograph", 
           "compressed radiograph", "distracted radiograph",
           "poor quality", "poor resolution", "not relevant radiograph", "CFHO",
           "Scler CrAE"]
@@ -35,7 +35,7 @@ shape:
   select_line_color: [255, 255, 255, 255]
   select_fill_color: [0, 255, 0, 155]
   hvertex_fill_color: [255, 255, 255, 255]
-  point_size: 4
+  point_size: 6
 
 # main
 flag_dock:
