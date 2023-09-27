@@ -13,8 +13,8 @@ import labelme.utils
 # - [maybe] Find optimal epsilon value.
 
 
-CURSOR_DEFAULT = QtCore.Qt.ArrowCursor
-CURSOR_POINT = QtCore.Qt.PointingHandCursor
+CURSOR_DEFAULT = QtCore.Qt.CrossCursor
+CURSOR_POINT = QtCore.Qt.CrossCursor
 CURSOR_DRAW = QtCore.Qt.CrossCursor
 CURSOR_MOVE = QtCore.Qt.ClosedHandCursor
 CURSOR_GRAB = QtCore.Qt.OpenHandCursor

@@ -9,18 +9,14 @@ logger_level: info
 
 flags: ["FCI A", "FCI B", "FCI C", "FCI D", "FCI E", "ill-positioned", "extended radiograph", 
           "compressed radiograph", "distracted radiograph",
-          "poor quality", "poor resolution", "not relevant radiograph"]
+          "poor quality", "poor resolution", "not relevant radiograph", "CFHO",
+          "Scler CrAE"]
 label_flags: null
-labels: ["right ventrolateral point", "right sclerotic point", "right maximal point", 
-          "right epifysar (poly) line", "right femoral head circle",
-          "left ventrolateral point", "left sclerotic point", "left maximal point",
-          "left epifysar (poly) line", "left femoral head circle", 
-          "right dorsal acetabular edge (poly) line", "left dorsal acetabular edge (poly) line",
-          "right innermost point of the acetabulum", "left innermost point of the acetabulum",
-          "right best fitting circle (FO)", "left best fitting circle (FO)", 
-          "Connection line best fitting circle", "right cranial acetabular subchondral bone (poly) line",
-          "left cranial acetabular subchondral bone (poly) line",
-          "right shifted best fitted femoral circle", "left shifted best fitted femoral circle"]
+labels: ["Morgan line", "left sclerotic point", "right sclerotic point", 
+          "left best fitting circle", "right best fitting circle",
+          "left caudal point", "right caudal point", 
+          "connection line",
+          "left shifted circle", "right shifted circle"]
 file_search: null
 sort_labels: true
 validate_label: null
